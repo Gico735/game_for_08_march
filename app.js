@@ -78,6 +78,11 @@ var frameRP1 = 1,
   healthP1 = document.getElementById("p1-health"),
   healthP2 = document.getElementById("p2-health");
 
+const drawFace = (face, x, y) => ctx.drawImage(face, x + 5, y + 5);
+
+const testPic = new Image();
+testPic.src = "./test_min.jpg";
+console.log(testPic);
 // load player 1 sprites
 for (var i = 0; i <= maxFrames; ++i) {
   player1Sprites[i] = new Image();
@@ -94,6 +99,7 @@ for (var i = 0; i <= maxFrames; ++i) {
         ) {
           // move left
           ctx.drawImage(player1Sprites[frameLP1], player1.x, player1.y);
+          drawFace(testPic, player1.x, player1.y);
           ++frameLP1;
           if (frameLP1 == 22) {
             frameLP1 = 11;
@@ -104,6 +110,7 @@ for (var i = 0; i <= maxFrames; ++i) {
         ) {
           // move right
           ctx.drawImage(player1Sprites[frameRP1], player1.x, player1.y);
+          drawFace(testPic, player1.x, player1.y);
           ++frameRP1;
           if (frameRP1 == 11) {
             frameRP1 = 1;
@@ -112,8 +119,10 @@ for (var i = 0; i <= maxFrames; ++i) {
           // jump
           if (player1.lastDir == "l") {
             ctx.drawImage(player1Sprites[24], player1.x, player1.y);
+            drawFace(testPic, player1.x, player1.y);
           } else {
             ctx.drawImage(player1Sprites[23], player1.x, player1.y);
+            drawFace(testPic, player1.x, player1.y);
           }
         } else if (keys[16] || b_P1 == true) {
           // attack
@@ -142,6 +151,7 @@ for (var i = 0; i <= maxFrames; ++i) {
             }
           } else {
             ctx.drawImage(player1Sprites[frameRPunchP1], player1.x, player1.y);
+            drawFace(testPic, player1.x, player1.y);
             if (frameRPunchP1 != 25) {
               ++frameRPunchP1;
               // dealing damage from left
@@ -163,6 +173,7 @@ for (var i = 0; i <= maxFrames; ++i) {
           }
         } else {
           ctx.drawImage(player1Sprites[0], player1.x, player1.y);
+          drawFace(testPic, player1.x, player1.y);
           frameLPunchP1 = 37;
           frameRPunchP1 = 26;
         }
@@ -172,10 +183,12 @@ for (var i = 0; i <= maxFrames; ++i) {
 }
 healthP1.style.width = player1.health + "%";
 
+const testPic2 = new Image();
+testPic2.src = "./test2_min.jpg";
+console.log(testPic2);
 // load player 2 sprites
 for (var j = 0; j <= maxFrames; ++j) {
   player2Sprites[j] = new Image();
-  console.log(j);
   player2Sprites[j].src =
     "https://jonkantner.com/experiments/stick_fight/sprites/player2/player" +
     j +
@@ -189,6 +202,9 @@ for (var j = 0; j <= maxFrames; ++j) {
         ) {
           // move left
           ctx.drawImage(player2Sprites[frameLP2], player2.x, player2.y);
+
+          drawFace(testPic2, player2.x, player2.y);
+
           ++frameLP2;
           if (frameLP2 == 22) {
             frameLP2 = 11;
@@ -199,6 +215,8 @@ for (var j = 0; j <= maxFrames; ++j) {
         ) {
           // move right
           ctx.drawImage(player2Sprites[frameRP2], player2.x, player2.y);
+
+          drawFace(testPic2, player2.x, player2.y);
           ++frameRP2;
           if (frameRP2 == 11) {
             frameRP2 = 1;
@@ -207,8 +225,12 @@ for (var j = 0; j <= maxFrames; ++j) {
           // jump
           if (player2.lastDir == "l") {
             ctx.drawImage(player2Sprites[24], player2.x, player2.y);
+
+            drawFace(testPic2, player2.x, player2.y);
           } else {
             ctx.drawImage(player2Sprites[23], player2.x, player2.y);
+
+            drawFace(testPic2, player2.x, player2.y);
           }
         } else if (keys[186] || b_P2 == true) {
           // attack
@@ -237,6 +259,8 @@ for (var j = 0; j <= maxFrames; ++j) {
             }
           } else {
             ctx.drawImage(player2Sprites[frameRPunchP2], player2.x, player2.y);
+
+            drawFace(testPic2, player2.x, player2.y);
             if (frameRPunchP2 != 25) {
               ++frameRPunchP2;
               // dealing damage from left
@@ -258,6 +282,8 @@ for (var j = 0; j <= maxFrames; ++j) {
           }
         } else {
           ctx.drawImage(player2Sprites[0], player2.x, player2.y);
+
+          drawFace(testPic2, player2.x, player2.y);
           frameLPunchP2 = 37;
           frameRPunchP2 = 26;
         }
