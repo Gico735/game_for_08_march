@@ -81,7 +81,7 @@ var frameRP1 = 1,
 const drawFace = (face, x, y) => ctx.drawImage(face, x + 5, y + 5);
 
 const testPic = new Image();
-testPic.src = "./test_min.jpg";
+testPic.src = "./img/test_min.jpg";
 console.log(testPic);
 // load player 1 sprites
 for (var i = 0; i <= maxFrames; ++i) {
@@ -184,7 +184,7 @@ for (var i = 0; i <= maxFrames; ++i) {
 healthP1.style.width = player1.health + "%";
 
 const testPic2 = new Image();
-testPic2.src = "./test2_min.jpg";
+testPic2.src = "./img/test2_min.jpg";
 console.log(testPic2);
 // load player 2 sprites
 for (var j = 0; j <= maxFrames; ++j) {
@@ -240,6 +240,7 @@ for (var j = 0; j <= maxFrames; ++j) {
               player2.x - player2.width / 2,
               player2.y
             );
+            drawFace(testPic2, player2.x - 12, player2.y);
             if (frameLPunchP2 != 36) {
               ++frameLPunchP2;
               // dealing damage from right
@@ -259,8 +260,7 @@ for (var j = 0; j <= maxFrames; ++j) {
             }
           } else {
             ctx.drawImage(player2Sprites[frameRPunchP2], player2.x, player2.y);
-
-            drawFace(testPic2, player2.x, player2.y);
+            drawFace(testPic2, player2.x + 15, player2.y);
             if (frameRPunchP2 != 25) {
               ++frameRPunchP2;
               // dealing damage from left
