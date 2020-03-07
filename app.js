@@ -81,7 +81,7 @@ var frameRP1 = 1,
 const drawFace = (face, x, y) => ctx.drawImage(face, x + 5, y + 5);
 
 const testPic = new Image();
-testPic.src = "./img/test_min.jpg";
+testPic.src = "./img/girl.png";
 console.log(testPic);
 // load player 1 sprites
 for (var i = 0; i <= maxFrames; ++i) {
@@ -94,7 +94,7 @@ for (var i = 0; i <= maxFrames; ++i) {
     anim1 = function() {
       if (player1.dead == false) {
         if (
-          (keys[65] && !player1.jumping) ||
+          (keys[90] && !player1.jumping) ||
           (left_P1 == true && !player1.jumping)
         ) {
           // move left
@@ -105,7 +105,7 @@ for (var i = 0; i <= maxFrames; ++i) {
             frameLP1 = 11;
           }
         } else if (
-          (keys[68] && !player1.jumping) ||
+          (keys[67] && !player1.jumping) ||
           (right_P1 == true && !player1.jumping)
         ) {
           // move right
@@ -124,14 +124,15 @@ for (var i = 0; i <= maxFrames; ++i) {
             ctx.drawImage(player1Sprites[23], player1.x, player1.y);
             drawFace(testPic, player1.x, player1.y);
           }
-        } else if (keys[16] || b_P1 == true) {
+        } else if (keys[32] || b_P1 == true) {
           // attack
           if (player1.lastDir == "l") {
             ctx.drawImage(
               player1Sprites[frameLPunchP1],
               player1.x - player1.width / 2,
               player1.y
-            );
+              );
+              drawFace(testPic, player1.x-12, player1.y);
             if (frameLPunchP1 != 36) {
               ++frameLPunchP1;
               // dealing damage from right
@@ -151,7 +152,7 @@ for (var i = 0; i <= maxFrames; ++i) {
             }
           } else {
             ctx.drawImage(player1Sprites[frameRPunchP1], player1.x, player1.y);
-            drawFace(testPic, player1.x, player1.y);
+            drawFace(testPic, player1.x+12, player1.y);
             if (frameRPunchP1 != 25) {
               ++frameRPunchP1;
               // dealing damage from left
@@ -184,7 +185,7 @@ for (var i = 0; i <= maxFrames; ++i) {
 healthP1.style.width = player1.health + "%";
 
 const testPic2 = new Image();
-testPic2.src = "./img/test2_min.jpg";
+testPic2.src = "./img/test2_min.png";
 console.log(testPic2);
 // load player 2 sprites
 for (var j = 0; j <= maxFrames; ++j) {
@@ -225,11 +226,9 @@ for (var j = 0; j <= maxFrames; ++j) {
           // jump
           if (player2.lastDir == "l") {
             ctx.drawImage(player2Sprites[24], player2.x, player2.y);
-
             drawFace(testPic2, player2.x, player2.y);
           } else {
             ctx.drawImage(player2Sprites[23], player2.x, player2.y);
-
             drawFace(testPic2, player2.x, player2.y);
           }
         } else if (keys[186] || b_P2 == true) {
@@ -321,7 +320,7 @@ function update() {
   }
   // move left
   // player 1
-  if (keys[65] || left_P1 == true) {
+  if (keys[90] || left_P1 == true) {
     if (player1.velX > -player1.speed) {
       player1.velX--;
       player1.lastDir = "l";
@@ -336,7 +335,7 @@ function update() {
   }
   // move right
   // player 1
-  if (keys[68] || right_P1 == true) {
+  if (keys[67] || right_P1 == true) {
     if (player1.velX < player1.speed) {
       player1.velX++;
       player1.lastDir = "r";
@@ -524,6 +523,8 @@ window.addEventListener("load", function() {
   update();
 });
 document.body.addEventListener("keydown", function(e) {
+  console.log(e.keyCode);
+  
   keys[e.keyCode] = true;
 });
 document.body.addEventListener("keyup", function(e) {
