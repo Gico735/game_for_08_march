@@ -26,7 +26,8 @@ var canvas = document.getElementById("canvas"),
     grounded: false,
     lastDir: "r",
     dead: false,
-    kills: 0
+    kills: 0,
+    startHP:100
   },
   player2 = {
     x: width * 0.75 - 50,
@@ -34,7 +35,7 @@ var canvas = document.getElementById("canvas"),
     width: 50,
     height: 100,
     speed: 7,
-    health: 100,
+    health: 200,
     attack: 5,
     range: 50,
     velX: 0,
@@ -43,7 +44,8 @@ var canvas = document.getElementById("canvas"),
     grounded: false,
     lastDir: "l",
     dead: false,
-    kills: 0
+    kills: 0,
+    startHP:200
   },
   keys = [],
   friction = 0.9,
@@ -82,7 +84,6 @@ const drawFace = (face, x, y) => ctx.drawImage(face, x + 5, y + 5);
 
 const testPic = new Image();
 testPic.src = "./img/girl.png";
-console.log(testPic);
 // load player 1 sprites
 for (var i = 0; i <= maxFrames; ++i) {
   player1Sprites[i] = new Image();
@@ -124,7 +125,7 @@ for (var i = 0; i <= maxFrames; ++i) {
             ctx.drawImage(player1Sprites[23], player1.x, player1.y);
             drawFace(testPic, player1.x, player1.y);
           }
-        } else if (keys[32] || b_P1 == true) {
+        } else if (keys[13] || b_P1 == true) {
           // attack
           if (player1.lastDir == "l") {
             ctx.drawImage(
@@ -186,7 +187,6 @@ healthP1.style.width = player1.health + "%";
 
 const testPic2 = new Image();
 testPic2.src = "./img/test2_min.png";
-console.log(testPic2);
 // load player 2 sprites
 for (var j = 0; j <= maxFrames; ++j) {
   player2Sprites[j] = new Image();
@@ -509,12 +509,12 @@ function incKO(winner, winnerCounter) {
 }
 
 // respawn defeated player
-function respawn(newLife, healthToFill) {
+function respawn(newLife, healthToFill,player) {
   deathTime = 0;
   newLife.dead = false;
   newLife.x = newLife == player1 ? width / 4 : width * 0.75 - 50;
   newLife.y = height - 100;
-  newLife.health = 100;
+  newLife.health = newLife.startHP;
   healthToFill.style.width = newLife.health + "%";
   healthToFill.style.background = "#0a0";
 }
@@ -524,7 +524,6 @@ window.addEventListener("load", function() {
 });
 document.body.addEventListener("keydown", function(e) {
   console.log(e.keyCode);
-  
   keys[e.keyCode] = true;
 });
 document.body.addEventListener("keyup", function(e) {

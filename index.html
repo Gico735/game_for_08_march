@@ -1,72 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
-  <style>
-    .list {
-      display: flex;
-      flex-direction: row;
-      width: 40%;
-      flex-wrap: wrap;
-      margin: 0 auto;
-    }
-
-    .list__character {
-      position: relative;
-      margin: 20px;
-      width: 40px;
-      height: 40px;
-      border: black 2px solid;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css">
   <title>Document</title>
 </head>
-
 <body>
-  <header>Choose your destiny</header>
-  <main class="list">
-    <div class="list__character" data-charcter="1">1</div>
-    <div class="list__character" data-charcter="2">2</div>
-    <div class="list__character" data-charcter="3">3</div>
-    <div class="list__character" data-charcter="4">4</div>
-    <div class="list__character" data-charcter="5">5</div>
-    <div class="list__character" data-charcter="6">6</div>
-    <div class="list__character" data-charcter="7">7</div>
-    <div class="list__character" data-charcter="8">8</div>
-    <div class="list__character" data-charcter="9">9</div>
-    <div class="list__character" data-charcter="10">10</div>
-    <div class="list__character" data-charcter="11">11</div>
-    <div class="list__character" data-charcter="12">12</div>
-    <div class="list__character" data-charcter="13">13</div>
-    <div class="list__character" data-charcter="14">14</div>
-    <div class="list__character" data-charcter="15">15</div>
-    <div class="list__character" data-charcter="16">16</div>
-    <div class="list__character" data-charcter="17">17</div>
-    <div class="list__character" data-charcter="18">18</div>
-    <div class="list__character" data-charcter="19">19</div>
-    <div class="list__character" data-charcter="20">20</div>
-    <div class="list__character" data-charcter="21">21</div>
-    <div class="list__character" data-charcter="22">22</div>
-    <div class="list__character" data-charcter="23">23</div>
-    <div class="list__character" data-charcter="24">24</div>
-    <div class="list__character" data-charcter="25">25</div>
-  </main>
-  <script>
-
-    const list = document.querySelector('.list')
-    list.addEventListener('click', (e) => {
-      const fighter = e.target.dataset.charcter
-      if (fighter) {
-        sessionStorage.setItem('fighter', fighter)
-        document.location = 'game.html'
-      }
-    })
-  </script>
+  <div class="container">
+    <div id="game">
+      <canvas id="canvas"></canvas>
+      <div id="health-bars">
+          <div class="health-label">
+            <strong>Player 1</strong><br><span id="p1-kills">0</span> KO(s)
+          </div>
+          <div class="health">
+              <span class="fill" id="p1-health"></span>
+          </div>
+          <div class="health">
+              <span class="fill" id="p2-health"></span>
+          </div>
+          <div class="health-label">
+            <strong>Player 2</strong><br><span id="p2-kills">0</span> KO(s)
+          </div>
+      </div>
+    </div>
+    <div id="controls">
+      <div id="p1-ctrls">
+        <div class="move" id="p1-left"><span class="arrow-left"></span></div>
+        <div class="move" id="p1-right"><span class="arrow-right"></span></div>
+        <div class="a-btn" id="p1-up">A</div>
+        <div class="b-btn" id="p1-atk">B</div>
+      </div>
+      <div id="p2-ctrls">
+        <div class="move" id="p2-left"><span class="arrow-left"></span></div>
+        <div class="move" id="p2-right"><span class="arrow-right"></span></div>
+        <div class="a-btn" id="p2-up">A</div>
+        <div class="b-btn" id="p2-atk">B</div>
+      </div>
+    </div>
+    <div id="keys">
+<!--       <div id="p1-keys">
+        <kbd>A</kbd>
+        <kbd>D</kbd>
+        <kbd>W</kbd>
+        <kbd>Shift</kbd>
+      </div>
+      <div id="p2-keys">
+        <kbd>&#8592;</kbd>
+        <kbd>&#8594;</kbd>
+        <kbd>&#8593;</kbd>
+        <kbd>;</kbd>
+      </div> -->
+    </div>
+  </div>
+  <script src="./app.js"></script>
+  <!-- <script src="./gamepad.js"></script> -->
 </body>
-
 </html>
